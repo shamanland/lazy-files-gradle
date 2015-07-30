@@ -3,7 +3,6 @@ package com.shamanland.lazyfiles
 import com.shamanland.lazyfiles.internal.DropBoxFactory
 import com.shamanland.lazyfiles.internal.DropBoxUtils
 import org.gradle.api.Project
-import org.gradle.api.internal.AbstractTask
 import org.gradle.testfixtures.ProjectBuilder
 import org.junit.Before
 import org.junit.Test
@@ -54,8 +53,8 @@ class LazyFilesFetchTaskTest {
 
         def lazyFiles = project.extensions.getByName("lazyFiles") as LazyFilesExtension
         lazyFiles.dropboxAccessToken = mockAccessToken
-        lazyFiles.dropboxFactory = mockFactory
-        lazyFiles.fetchItems = mockItems
+        lazyFiles._dropboxFactory = mockFactory
+        lazyFiles._fetchItems = mockItems
 
         def task = project.tasks.findByName("fetchLazyFiles") as LazyFilesFetchTask
         task.execute()

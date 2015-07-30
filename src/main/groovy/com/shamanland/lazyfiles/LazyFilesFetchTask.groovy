@@ -9,7 +9,7 @@ class LazyFilesFetchTask extends DefaultTask {
     @TaskAction
     def actionImpl() {
         def lazyFiles = project.extensions.getByName("lazyFiles") as LazyFilesExtension
-        def utils = lazyFiles.dropboxFactory.createUtils()
+        def utils = lazyFiles._dropboxFactory.createUtils()
         lazyFiles.fetch().each {
             LazyFilesItem item = it
             time "Fetch remote file " + item.dropbox + " to " + item.local, {

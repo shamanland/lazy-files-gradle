@@ -53,8 +53,8 @@ class LazyFilesUploadTaskTest {
 
         def lazyFiles = project.extensions.getByName("lazyFiles") as LazyFilesExtension
         lazyFiles.dropboxAccessToken = mockAccessToken
-        lazyFiles.dropboxFactory = mockFactory
-        lazyFiles.uploadItems = mockItems
+        lazyFiles._dropboxFactory = mockFactory
+        lazyFiles._uploadItems = mockItems
 
         def task = project.tasks.findByName("uploadLazyFiles") as LazyFilesUploadTask
         task.execute()

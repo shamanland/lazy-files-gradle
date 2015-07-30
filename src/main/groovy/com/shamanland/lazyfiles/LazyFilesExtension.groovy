@@ -8,25 +8,25 @@ import static java.util.Collections.unmodifiableCollection
 class LazyFilesExtension {
     String dropboxAccessToken
 
-    List<LazyFilesItem> fetchItems = new ArrayList<>()
+    List<LazyFilesItem> _fetchItems = new ArrayList<>()
 
-    List<LazyFilesItem> uploadItems = new ArrayList<>()
+    List<LazyFilesItem> _uploadItems = new ArrayList<>()
 
-    DropBoxFactory dropboxFactory = new DropBoxFactoryImpl()
+    DropBoxFactory _dropboxFactory = new DropBoxFactoryImpl()
 
     Iterable<LazyFilesItem> fetch() {
-        unmodifiableCollection fetchItems
+        unmodifiableCollection _fetchItems
     }
 
     Iterable<LazyFilesItem> upload() {
-        unmodifiableCollection uploadItems
+        unmodifiableCollection _uploadItems
     }
 
     def fetch(File dropboxFile, File localFile) {
-        fetchItems.add new LazyFilesItem(localFile, dropboxFile)
+        _fetchItems.add new LazyFilesItem(localFile, dropboxFile)
     }
 
     def upload(File localFile, File dropboxFile) {
-        uploadItems.add new LazyFilesItem(localFile, dropboxFile)
+        _uploadItems.add new LazyFilesItem(localFile, dropboxFile)
     }
 }

@@ -9,7 +9,7 @@ class LazyFilesUploadTask extends DefaultTask {
     @TaskAction
     def actionImpl() {
         def lazyFiles = project.extensions.getByName("lazyFiles") as LazyFilesExtension
-        def utils = lazyFiles.dropboxFactory.createUtils()
+        def utils = lazyFiles._dropboxFactory.createUtils()
         lazyFiles.upload().each {
             LazyFilesItem item = it
             time "Upload local file " + item.dropbox + " to " + item.local, {
