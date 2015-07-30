@@ -1,6 +1,5 @@
-package com.shamanland.lazyfiles.test
+package com.shamanland.lazyfiles
 
-import com.shamanland.lazyfiles.LazyFilesExtension
 import org.gradle.api.Project
 import org.gradle.testfixtures.ProjectBuilder
 import org.junit.Before
@@ -20,7 +19,7 @@ class LazyFilesExtensionTest {
 
     @Test
     void emptyItems() {
-        LazyFilesExtension lazyFiles = project.extensions.getByName("lazyFiles") as LazyFilesExtension
+        def lazyFiles = project.extensions.getByName("lazyFiles") as LazyFilesExtension
 
         assertFalse(lazyFiles.fetch().iterator().hasNext())
         assertFalse(lazyFiles.upload().iterator().hasNext())
@@ -28,7 +27,7 @@ class LazyFilesExtensionTest {
 
     @Test
     void singleFetchItems() {
-        LazyFilesExtension lazyFiles = project.extensions.getByName("lazyFiles") as LazyFilesExtension
+        def lazyFiles = project.extensions.getByName("lazyFiles") as LazyFilesExtension
 
         File local = mock(File)
         File dropbox = mock(File)
@@ -47,7 +46,7 @@ class LazyFilesExtensionTest {
 
     @Test
     void singleUploadItems() {
-        LazyFilesExtension lazyFiles = project.extensions.getByName("lazyFiles") as LazyFilesExtension
+        def lazyFiles = project.extensions.getByName("lazyFiles") as LazyFilesExtension
 
         File local = mock(File)
         File dropbox = mock(File)
@@ -66,7 +65,7 @@ class LazyFilesExtensionTest {
 
     @Test
     void multipleFetchItems() {
-        LazyFilesExtension lazyFiles = project.extensions.getByName("lazyFiles") as LazyFilesExtension
+        def lazyFiles = project.extensions.getByName("lazyFiles") as LazyFilesExtension
 
         int count = 10
 

@@ -2,7 +2,7 @@ package com.shamanland.lazyfiles
 
 import static com.shamanland.lazyfiles.internal.Utils.notNull
 
-final class LazyFilesItem {
+class LazyFilesItem {
     final File local
     final File dropbox
 

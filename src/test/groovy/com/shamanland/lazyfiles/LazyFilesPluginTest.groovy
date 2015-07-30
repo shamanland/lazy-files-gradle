@@ -1,8 +1,5 @@
-package com.shamanland.lazyfiles.test
+package com.shamanland.lazyfiles
 
-import com.shamanland.lazyfiles.LazyFilesExtension
-import com.shamanland.lazyfiles.LazyFilesFetchTask
-import com.shamanland.lazyfiles.LazyFilesUploadTask
 import org.gradle.api.Project
 import org.gradle.testfixtures.ProjectBuilder
 import org.junit.Before

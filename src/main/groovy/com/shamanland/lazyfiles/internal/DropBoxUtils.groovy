@@ -2,12 +2,8 @@ package com.shamanland.lazyfiles.internal
 
 import com.shamanland.lazyfiles.LazyFilesItem
 
-class DropBoxUtils {
-    static def fetch(String accessToken, LazyFilesItem item) {
-        // TODO
-    }
+interface DropBoxUtils {
+    boolean fetch(String accessToken, LazyFilesItem item)
 
-    static def upload(String accessToken, LazyFilesItem item) {
-        // TODO
-    }
+    boolean upload(String accessToken, LazyFilesItem item)
 }
