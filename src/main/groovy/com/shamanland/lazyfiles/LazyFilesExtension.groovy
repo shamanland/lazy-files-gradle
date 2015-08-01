@@ -14,19 +14,19 @@ class LazyFilesExtension {
 
     DropBoxFactory _dropboxFactory = new DropBoxFactoryImpl()
 
-    Iterable<LazyFilesItem> fetch() {
+    Collection<LazyFilesItem> fetchItems() {
         unmodifiableCollection _fetchItems
     }
 
-    Iterable<LazyFilesItem> upload() {
+    Collection<LazyFilesItem> uploadItems() {
         unmodifiableCollection _uploadItems
     }
 
-    def fetch(File dropboxFile, File localFile) {
+    def fetchFile(File dropboxFile, File localFile) {
         _fetchItems.add new LazyFilesItem(localFile, dropboxFile)
     }
 
-    def upload(File localFile, File dropboxFile) {
+    def uploadFile(File localFile, File dropboxFile) {
         _uploadItems.add new LazyFilesItem(localFile, dropboxFile)
     }
 }

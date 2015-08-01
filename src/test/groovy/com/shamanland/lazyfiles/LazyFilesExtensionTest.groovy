@@ -21,8 +21,8 @@ class LazyFilesExtensionTest {
     void emptyItems() {
         def lazyFiles = project.extensions.getByName("lazyFiles") as LazyFilesExtension
 
-        assertFalse(lazyFiles.fetch().iterator().hasNext())
-        assertFalse(lazyFiles.upload().iterator().hasNext())
+        assertFalse(lazyFiles.fetchItems().iterator().hasNext())
+        assertFalse(lazyFiles.uploadItems().iterator().hasNext())
     }
 
     @Test
@@ -32,10 +32,10 @@ class LazyFilesExtensionTest {
         File local = mock(File)
         File dropbox = mock(File)
 
-        lazyFiles.fetch(dropbox, local)
+        lazyFiles.fetchFile(dropbox, local)
 
         int count = 0
-        lazyFiles.fetch().each {
+        lazyFiles.fetchItems().each {
             assertSame(local, it.local)
             assertSame(dropbox, it.dropbox)
             count += 1
@@ -51,10 +51,10 @@ class LazyFilesExtensionTest {
         File local = mock(File)
         File dropbox = mock(File)
 
-        lazyFiles.upload(local, dropbox)
+        lazyFiles.uploadFile(local, dropbox)
 
         int count = 0
-        lazyFiles.upload().each {
+        lazyFiles.uploadItems().each {
             assertSame(local, it.local)
             assertSame(dropbox, it.dropbox)
             count += 1
@@ -78,15 +78,15 @@ class LazyFilesExtensionTest {
             local[i0] = local[i1] = mock(File)
             dropbox[i0] = dropbox[i1] = mock(File)
 
-            lazyFiles.fetch(dropbox[i0], local[i0])
-            lazyFiles.fetch(dropbox[i1], local[i1])
+            lazyFiles.fetchFile(dropbox[i0], local[i0])
+            lazyFiles.fetchFile(dropbox[i1], local[i1])
 
             i0 += 2
             i1 += 2
         }
 
         int i = 0
-        lazyFiles.fetch().each {
+        lazyFiles.fetchItems().each {
             assertSame(local[i], it.local)
             assertSame(dropbox[i], it.dropbox)
 
@@ -111,15 +111,15 @@ class LazyFilesExtensionTest {
             local[i0] = local[i1] = mock(File)
             dropbox[i0] = dropbox[i1] = mock(File)
 
-            lazyFiles.upload(local[i0], dropbox[i0])
-            lazyFiles.upload(local[i1], dropbox[i1])
+            lazyFiles.uploadFile(local[i0], dropbox[i0])
+            lazyFiles.uploadFile(local[i1], dropbox[i1])
 
             i0 += 2
             i1 += 2
         }
 
         int i = 0
-        lazyFiles.upload().each {
+        lazyFiles.uploadItems().each {
             assertSame(local[i], it.local)
             assertSame(dropbox[i], it.dropbox)
 

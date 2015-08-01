@@ -13,5 +13,6 @@ class LazyFilesPlugin implements Plugin<Project> {
         project.extensions.create "lazyFiles", LazyFilesExtension
         project.task "fetchLazyFiles", type: LazyFilesFetchTask
         project.task "uploadLazyFiles", type: LazyFilesUploadTask
+        project.task "loginLazyFiles", type: LazyFilesLoginTask
     }
 }
