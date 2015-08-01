@@ -17,7 +17,11 @@ class DropBoxUtilsImpl implements DropBoxUtils {
         try {
             LazyFilesPlugin.logger.info "Start fetching: " + item.dropbox.path
             DbxEntry.File fetchedFile = client.getFile(item.dropbox.path, null, os);
-            LazyFilesPlugin.logger.info "Fetched: " + fetchedFile.toString()
+            if (fetchedFile == null) {
+                throw new AssertionError("Couldn't fetch " + item.dropbox)
+            }
+
+            LazyFilesPlugin.logger.info "Fetched: " + fetchedFile
         } finally {
             os.close();
         }
@@ -35,7 +39,11 @@ class DropBoxUtilsImpl implements DropBoxUtils {
         try {
             LazyFilesPlugin.logger.info "Start uploading: " + item.local.path
             DbxEntry.File uploadedFile = client.uploadFile(item.dropbox.path, DbxWriteMode.add(), item.local.length(), is)
-            LazyFilesPlugin.logger.info "Uploaded: " + uploadedFile.toString()
+            if (uploadedFile == null) {
+                throw new AssertionError("Couldn't upload " + item.local)
+            }
+
+            LazyFilesPlugin.logger.info "Uploaded: " + uploadedFile
         } finally {
             is.close();
         }
