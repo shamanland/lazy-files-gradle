@@ -5,7 +5,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'org.gradle.api.plugins:gradle-nexus-plugin:0.7.1'
+        classpath 'org.gradle.api.plugins:gradle-nexus-plugin:0.3'
     }
 }
 
@@ -27,17 +27,17 @@ dependencies {
 }
 
 group = 'com.shamanland'
-version = '0.0.1-SNAPSHOT'
+version = '0.1'
 
 install {
     repositories.mavenInstaller {
-        pom.artifactId = 'gradle-plugin'
+        pom.artifactId = 'lazy-files'
     }
 }
 
 uploadArchives {
     repositories.mavenDeployer {
-        pom.artifactId = 'gradle-plugin'
+        pom.artifactId = 'lazy-files'
     }
 }
 
@@ -69,4 +69,8 @@ modifyPom {
             }
         }
     }
+}
+
+nexus {
+    sign = true
 }
