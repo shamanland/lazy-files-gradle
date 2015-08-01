@@ -10,9 +10,9 @@ class LazyFilesUploadTask extends DefaultTask {
     @TaskAction
     def actionImpl() {
         def lazyFiles = project.extensions.getByName("lazyFiles") as LazyFilesExtension
-        if (lazyFiles.dropboxAccessToken == null) {
+        if (lazyFiles.dropboxAccessToken == null || lazyFiles.dropboxAccessToken.isEmpty()) {
             lazyFiles.dropboxAccessToken = DropBoxHelper.readAccessToken project
-            if (lazyFiles.dropboxAccessToken == null) {
+            if (lazyFiles.dropboxAccessToken == null || lazyFiles.dropboxAccessToken.isEmpty()) {
                 throw new AssertionError("No dropboxAccessToken specified, try to perform task loginLazyFiles or configure it manually")
             }
         }
