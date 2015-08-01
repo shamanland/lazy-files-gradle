@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Lazy Files Gradle Plugin by shamanland</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/shamanland/lazy-files-gradle">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/shamanland/lazy-files-gradle/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/shamanland/lazy-files-gradle/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Lazy Files Gradle Plugin</h1>
+          <p></p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/shamanland">shamanland</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>
+<a id="lazy-files-gradle-plugin" class="anchor" href="#lazy-files-gradle-plugin" aria-hidden="true"><span class="octicon octicon-link"></span></a>Lazy Files Gradle Plugin</h1>
+
+<p>Have a private project?</p>
+
+<p>Need to upload binaries, reports from CI server?</p>
+
+<p>No ability to setup dedicated server?</p>
+
+<p>Use your DropBox account for any of your goals!</p>
+
+<p><strong>Lazy Files</strong> help you with this.</p>
+
+<h1>
+<a id="limitations" class="anchor" href="#limitations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Limitations</h1>
+
+<ol>
+<li>Only Gradle plugin currently available, <em>but you can</em> help this project by adding something else.</li>
+<li>It's not a Maven repository over DropBox, <em>but you can</em> easily reach your goals in a similar way.</li>
+<li>It's not a dependency resolving system, <em>but you can</em> simplify development with your own conventions.</li>
+</ol>
+
+<h1>
+<a id="how-to-use-it" class="anchor" href="#how-to-use-it" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use it?</h1>
+
+<ol>
+<li>
+<p>Include it like a dependency to your buildscript:</p>
+
+<pre><code>buildscript {
+    dependencies {
+        classpath 'com.shamanland:lazy-files:0.1.1'
+    }
+}
+</code></pre>
+</li>
+<li>
+<p>Apply plugin to any project or sub-project:</p>
+
+<pre><code>apply plugin: 'lazy-files'
+</code></pre>
+</li>
+<li>
+<p>Configure items for uploading:</p>
+
+<pre><code>lazyFiles {
+    uploadFile new File(projectDir, 'build/libs/my-lib-0.1.jar'), new File('/my-project/my-lib-0.1.jar')
+    // uploadFile new File('/absolute/path/to/local.file'), new File('/dropbox/path/to/remote.file')
+}
+</code></pre>
+</li>
+<li>
+<p>Configure items for fetching:</p>
+
+<pre><code>lazyFiles {
+    fetchFile new File(projectDir, 'build/libs/my-lib-0.1.jar'), new File('/my-project/my-lib-0.1.jar')
+    // fetchFile new File('/dropbox/path/to/remote.file'), new File('/absolute/path/to/local.file')
+}
+</code></pre>
+</li>
+<li>
+<p>Invoke corresponding gradle tasks:</p>
+
+<pre><code>gradlew uploadLazyFiles
+gradlew fetchLazyFiles
+</code></pre>
+</li>
+</ol>
+
+<h1>
+<a id="how-to-authenticate" class="anchor" href="#how-to-authenticate" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to authenticate?</h1>
+
+<ol>
+<li>
+<p>There is built-in gradle task, invoke it and follow instructions in order to get access token:</p>
+
+<pre><code>gradlew loginLazyFiles
+</code></pre>
+
+<p>Once you finish this step, access token will be saved in your home directory (<code>~/.lazy-files/app.properties</code>).</p>
+
+<p>You can use different accounts for different projects, they will be stored using SHA1 of project absolute path. </p>
+</li>
+<li>
+<p>You can specify access token manually:</p>
+
+<p>At first run task from previous step with the argument <code>--info</code>, then you will see the following output:</p>
+
+<pre><code>DropBox access token retrieved: AAAAAAAA
+</code></pre>
+
+<p>Now you can place this token into <code>build.gradle</code>:</p>
+
+<pre><code>lazyFiles {
+    dropboxAccessToken = 'AAAAAAAA'
+}
+</code></pre>
+</li>
+</ol>
+
+<h1>
+<a id="security" class="anchor" href="#security" aria-hidden="true"><span class="octicon octicon-link"></span></a>Security</h1>
+
+<p>Be careful sharing access token with someone else or saving it in repository.
+Anyone can use it without any additional authentication like you.</p>
+
+<p>But usually it's not a problem if your project is completely private.
+You may commit this access token to VCS, then anyone from your team won't be required to authenticate again.</p>
+
+<h1>
+<a id="example-projects" class="anchor" href="#example-projects" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example projects</h1>
+
+<p>TODO</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<pre><code>Copyright 2015 ShamanLand.Com
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</code></pre>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
