@@ -20,6 +20,8 @@ class LazyFilesLoginTask extends DefaultTask {
                     throw new StopExecutionException("Couldn't get access token")
                 }
 
+                LazyFilesPlugin.logger.info "DropBox access token retrieved: " + token
+
                 lazyFiles.dropboxAccessToken = token
                 DropBoxHelper.saveAccessToken project, token
             }
