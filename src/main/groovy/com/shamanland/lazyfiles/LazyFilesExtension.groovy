@@ -22,11 +22,11 @@ class LazyFilesExtension {
         unmodifiableCollection _uploadItems
     }
 
-    def fetchFile(File dropboxFile, File localFile) {
-        _fetchItems.add new LazyFilesItem(localFile, dropboxFile)
+    def fetchFile(String dropboxPath, File localFile) {
+        _fetchItems.add new LazyFilesItem(localFile, dropboxPath)
     }
 
-    def uploadFile(File localFile, File dropboxFile) {
-        _uploadItems.add new LazyFilesItem(localFile, dropboxFile)
+    def uploadFile(File localFile, String dropboxPath) {
+        _uploadItems.add new LazyFilesItem(localFile, dropboxPath)
     }
 }

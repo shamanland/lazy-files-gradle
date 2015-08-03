@@ -24,7 +24,7 @@ Use your DropBox account for any of your goals!
     ```
     buildscript {
         dependencies {
-            classpath 'com.shamanland:lazy-files:0.1.1'
+            classpath 'com.shamanland:lazy-files:0.1.2'
         }
     }
     ```
@@ -39,8 +39,8 @@ Use your DropBox account for any of your goals!
 
     ```
     lazyFiles {
-        uploadFile new File(projectDir, 'build/libs/my-lib-0.1.jar'), new File('/my-project/my-lib-0.1.jar')
-        // uploadFile new File('/absolute/path/to/local.file'), new File('/dropbox/path/to/remote.file')
+        uploadFile new File(projectDir, 'build/libs/my-lib-0.1.jar'), '/my-project/my-lib-0.1.jar'
+        // uploadFile new File('/absolute/path/to/local.file'), '/dropbox/path/to/remote.file'
     }
     ```
 
@@ -48,8 +48,8 @@ Use your DropBox account for any of your goals!
 
     ```
     lazyFiles {
-        fetchFile new File(projectDir, 'build/libs/my-lib-0.1.jar'), new File('/my-project/my-lib-0.1.jar')
-        // fetchFile new File('/dropbox/path/to/remote.file'), new File('/absolute/path/to/local.file')
+        fetchFile '/my-project/my-lib-0.1.jar', new File(projectDir, 'build/libs/my-lib-0.1.jar')
+        // fetchFile '/dropbox/path/to/remote.file', new File('/absolute/path/to/local.file')
     }
     ```
 

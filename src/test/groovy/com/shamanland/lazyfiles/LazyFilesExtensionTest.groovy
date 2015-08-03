@@ -10,11 +10,14 @@ import static org.mockito.Mockito.mock
 
 class LazyFilesExtensionTest {
     Project project
+    Random random;
 
     @Before
     void setUp() {
         project = ProjectBuilder.builder().build()
         project.apply plugin: "lazy-files"
+
+        random = new Random();
     }
 
     @Test
@@ -30,7 +33,7 @@ class LazyFilesExtensionTest {
         def lazyFiles = project.extensions.getByName("lazyFiles") as LazyFilesExtension
 
         File local = mock(File)
-        File dropbox = mock(File)
+        String dropbox = String.valueOf(random.nextInt())
 
         lazyFiles.fetchFile(dropbox, local)
 
@@ -49,7 +52,7 @@ class LazyFilesExtensionTest {
         def lazyFiles = project.extensions.getByName("lazyFiles") as LazyFilesExtension
 
         File local = mock(File)
-        File dropbox = mock(File)
+        String dropbox = String.valueOf(random.nextInt())
 
         lazyFiles.uploadFile(local, dropbox)
 
@@ -70,13 +73,13 @@ class LazyFilesExtensionTest {
         int count = 10
 
         File[] local = new File[10]
-        File[] dropbox = new File[10]
+        String[] dropbox = new String[10]
 
         int i0 = 0
         int i1 = 1
         while (i1 < count) {
             local[i0] = local[i1] = mock(File)
-            dropbox[i0] = dropbox[i1] = mock(File)
+            dropbox[i0] = dropbox[i1] = String.valueOf(random.nextInt())
 
             lazyFiles.fetchFile(dropbox[i0], local[i0])
             lazyFiles.fetchFile(dropbox[i1], local[i1])
@@ -103,13 +106,13 @@ class LazyFilesExtensionTest {
         int count = 10
 
         File[] local = new File[10]
-        File[] dropbox = new File[10]
+        String[] dropbox = new String[10]
 
         int i0 = 0
         int i1 = 1
         while (i1 < count) {
             local[i0] = local[i1] = mock(File)
-            dropbox[i0] = dropbox[i1] = mock(File)
+            dropbox[i0] = dropbox[i1] = String.valueOf(random.nextInt())
 
             lazyFiles.uploadFile(local[i0], dropbox[i0])
             lazyFiles.uploadFile(local[i1], dropbox[i1])
